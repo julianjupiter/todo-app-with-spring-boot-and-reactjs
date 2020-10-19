@@ -1,0 +1,33 @@
+todo-service/HELP.md
+todo-service/target/
+!todo-service/.mvn/wrapper/maven-wrapper.jar
+!todo-service/**/src/main/**/target/
+!todo-service/**/src/test/**/target/
+
+### STS ###
+todo-service/.apt_generated
+todo-service/.classpath
+todo-service/.factorypath
+todo-service/.project
+todo-service/.settings
+todo-service/.springBeans
+todo-service/.sts4-cache
+
+### IntelliJ IDEA ###
+todo-service/.idea
+todo-service/*.iws
+todo-service/*.iml
+todo-service/*.ipr
+
+### NetBeans ###
+/todo-service/nbproject/private/
+/todo-service/nbbuild/
+/todo-service/dist/
+/todo-service/nbdist/
+/todo-service/.nb-gradle/
+todo-service/build/
+!todo-service/**/src/main/**/build/
+!todo-service/**/src/test/**/build/
+
+### VS Code ###
+todo-service/.vscode/
