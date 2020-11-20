@@ -4,23 +4,26 @@ import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 
 @Entity
 public class RefreshToken {
     @Id
-    private String id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String username;
-    @Column(name = "refresh_token_key")
+    @Column(name = "token_key")
     @Basic(fetch = FetchType.LAZY)
     private String key;
     private Boolean revoked;
 
-    public String getId() {
+    public Long getId() {
         return id;
     }
 
-    public RefreshToken setId(String id) {
+    public RefreshToken setId(Long id) {
         this.id = id;
         return this;
     }

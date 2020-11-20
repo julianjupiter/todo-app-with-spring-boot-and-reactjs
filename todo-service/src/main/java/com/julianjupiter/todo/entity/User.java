@@ -6,7 +6,11 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import java.time.OffsetDateTime;
 import java.util.Set;
 
@@ -23,8 +27,16 @@ public class User {
     private Boolean enabled = true;
     private OffsetDateTime createdAt;
     private OffsetDateTime updatedAt;
+    @OneToOne(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private UserDetails userDetails;
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
     private Set<Todo> todos;
+    @ManyToMany(cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @JoinTable(name = "user_role",
+            joinColumns = @JoinColumn(name = "user_id"),
+            inverseJoinColumns = @JoinColumn(name = "role_id")
+    )
+    private Set<Role> roles;
 
     public Long getId() {
         return id;
@@ -107,12 +119,30 @@ public class User {
         return this;
     }
 
+    public UserDetails getUserDetails() {
+        return userDetails;
+    }
+
+    public User setUserDetails(UserDetails userDetails) {
+        this.userDetails = userDetails;
+        return this;
+    }
+
     public Set<Todo> getTodos() {
         return todos;
     }
 
     public User setTodos(Set<Todo> todos) {
         this.todos = todos;
+        return this;
+    }
+
+    public Set<Role> getRoles() {
+        return roles;
+    }
+
+    public User setRoles(Set<Role> roles) {
+        this.roles = roles;
         return this;
     }
 }

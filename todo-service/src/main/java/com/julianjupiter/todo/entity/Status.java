@@ -1,23 +1,25 @@
 package com.julianjupiter.todo.entity;
 
-import javax.persistence.Column;
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import java.time.OffsetDateTime;
+import java.util.Set;
 
 @Entity
 public class Status {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer id;@Column(name = "name")
-    @Enumerated(EnumType.STRING)
-    private StatusType statusType;
+    private Integer id;
+    private String name;
     private OffsetDateTime createdAt;
     private OffsetDateTime updatedAt;
+    @OneToMany(mappedBy = "status", fetch = FetchType.LAZY, cascade = CascadeType.ALL)
+    private Set<Todo> todos;
 
     public Integer getId() {
         return id;
@@ -28,12 +30,12 @@ public class Status {
         return this;
     }
 
-    public StatusType getStatusType() {
-        return statusType;
+    public String getName() {
+        return name;
     }
 
-    public Status setStatusType(StatusType statusType) {
-        this.statusType = statusType;
+    public Status setName(String name) {
+        this.name = name;
         return this;
     }
 
@@ -55,7 +57,12 @@ public class Status {
         return this;
     }
 
-    enum StatusType {
-        INCOMPLETE, COMPLETE
+    public Set<Todo> getTodos() {
+        return todos;
+    }
+
+    public Status setTodos(Set<Todo> todos) {
+        this.todos = todos;
+        return this;
     }
 }

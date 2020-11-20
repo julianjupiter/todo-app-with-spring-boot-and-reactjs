@@ -1,5 +1,6 @@
 package com.julianjupiter.todo.service;
 
+import com.julianjupiter.todo.dto.CreateTodoDto;
 import com.julianjupiter.todo.dto.TodoDto;
 
 import java.util.List;
@@ -10,7 +11,13 @@ public interface TodoService {
 
     Optional<TodoDto> findById(Long id);
 
-    TodoDto save(TodoDto todoDto);
+    List<TodoDto> findByUser(Long id);
+
+    List<TodoDto> findByUser(String username);
+
+    TodoDto create(String username, CreateTodoDto createTodoDto);
+
+    TodoDto update(TodoDto todoDto);
 
     void deleteById(long id);
 }

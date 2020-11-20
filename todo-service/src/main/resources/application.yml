@@ -2,10 +2,12 @@
 server:
   port: 7000
   servlet:
-    context-path: /todo-services/api/v1
+    context-path: /todo-services/api
 
 # spring
 spring:
+  application:
+    name: todo-service
   datasource:
     driverClassName: org.h2.Driver
     url: jdbc:h2:mem:testdb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;Mode=MySQL
@@ -31,3 +33,21 @@ spring:
 
   messages:
     basename: i18n/messages
+# security
+security:
+  password-encoder-id: bcrypt
+  token:
+    jwt:
+      generator:
+        access-token:
+          secret: aeba51fc-6137-4b0b-babe-88b65c8b5e8
+          jws-algorithm: HS256
+          expiration: 1800
+        refresh-token:
+          secret: aeba51fc-6137-4b0b-babe-88b65c8b5e8
+          jws-algorithm: HS256
+      signatures:
+        secret:
+          generator:
+            secret: aeba51fc-6137-4b0b-babe-88b65c8b5e8
+            jws-algorithm: HS256

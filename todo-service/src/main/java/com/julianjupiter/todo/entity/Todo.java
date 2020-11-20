@@ -18,7 +18,7 @@ public class Todo {
     @JoinColumn(name = "user_id")
     private User user;
     private String description;
-    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "status_id")
     private Status status;
     private OffsetDateTime createdAt;

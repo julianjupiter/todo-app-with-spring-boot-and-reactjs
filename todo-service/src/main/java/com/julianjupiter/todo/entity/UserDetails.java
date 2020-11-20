@@ -2,18 +2,21 @@ package com.julianjupiter.todo.entity;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 import java.time.OffsetDateTime;
 
 @Entity
-public class UserInfo {
+public class UserDetails {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToOne(cascade = CascadeType.ALL)
+    @OneToOne(fetch = FetchType.LAZY, cascade = CascadeType.ALL, optional = false)
+    @JoinColumn(name = "user_id")
     private User user;
     private String firstName;
     private String lastName;
@@ -26,7 +29,7 @@ public class UserInfo {
         return id;
     }
 
-    public UserInfo setId(Long id) {
+    public UserDetails setId(Long id) {
         this.id = id;
         return this;
     }
@@ -35,7 +38,7 @@ public class UserInfo {
         return user;
     }
 
-    public UserInfo setUser(User user) {
+    public UserDetails setUser(User user) {
         this.user = user;
         return this;
     }
@@ -44,7 +47,7 @@ public class UserInfo {
         return firstName;
     }
 
-    public UserInfo setFirstName(String firstName) {
+    public UserDetails setFirstName(String firstName) {
         this.firstName = firstName;
         return this;
     }
@@ -53,7 +56,7 @@ public class UserInfo {
         return lastName;
     }
 
-    public UserInfo setLastName(String lastName) {
+    public UserDetails setLastName(String lastName) {
         this.lastName = lastName;
         return this;
     }
@@ -62,7 +65,7 @@ public class UserInfo {
         return mobileNumber;
     }
 
-    public UserInfo setMobileNumber(String mobileNumber) {
+    public UserDetails setMobileNumber(String mobileNumber) {
         this.mobileNumber = mobileNumber;
         return this;
     }
@@ -71,7 +74,7 @@ public class UserInfo {
         return emailAddress;
     }
 
-    public UserInfo setEmailAddress(String emailAddress) {
+    public UserDetails setEmailAddress(String emailAddress) {
         this.emailAddress = emailAddress;
         return this;
     }
@@ -80,7 +83,7 @@ public class UserInfo {
         return createdAt;
     }
 
-    public UserInfo setCreatedAt(OffsetDateTime createdAt) {
+    public UserDetails setCreatedAt(OffsetDateTime createdAt) {
         this.createdAt = createdAt;
         return this;
     }
@@ -89,7 +92,7 @@ public class UserInfo {
         return updatedAt;
     }
 
-    public UserInfo setUpdatedAt(OffsetDateTime updatedAt) {
+    public UserDetails setUpdatedAt(OffsetDateTime updatedAt) {
         this.updatedAt = updatedAt;
         return this;
     }
